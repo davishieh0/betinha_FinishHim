@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {%if title%}
+  <title>{{title}} - Betinha</title>
+  {%else%}
+  <title>Betinha</title>
+  {%endif%}
+  <script src=”../static\js\script.js”></script>
+  <link rel="icon" type="image/ico" sizes="32x32" href="../static\assets\logobet.ico">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <link rel="stylesheet" href="/static/css/style.css">
+  {% block extra_css %}{% endblock %}
+  <style>
+    .flash-messages {
+    position: fixed;
+    top: 100px;
+    right: 40px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.flash-message {
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+    opacity: 1;
+    animation: fade-in 0.5s ease-out;
+    transition: opacity 1s ease-in-out;
+}
+
+.flash-message.success {
+    background-color: #4caf50;
+}
+
+.flash-message.error {
+    background-color: #f44336;
+}
+
+.flash-message.warning {
+    background-color: #ff9800;
+}
+
+.flash-message.info {
+    background-color: #2196f3;
+}
+
+/* Efeito de fade-in para a entrada */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efeito de fade-out para a saída */
+.fade-out {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Adiciona um efeito de hover */
+.flash-message:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+  <div class="header">
+    <img class="icon" src="../static/assets/logo.png">
+    <b class="betinha777">Betinha777 </b>
+    <a class="homepage" href="/home">Home</a>
+    <a class="carteirahome" href="{{ url_for('myWallet') }}">Carteira</a>
+    {%if session['loggedin']%}
+      <a class="homepage" href="/logout">Sair</a>
+    {%else%}
+      <a class="login" href="/login">Login</a>
+      <a class="register" href="/register">Cadastre-se</a>
+    {%endif%}
+  </div>
+
+  <div class="flash-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+  {%block content%}{%endblock%}
+
+  <script>
+    setTimeout(() => {
+        document.querySelectorAll('.flash-message').forEach(msg => msg.style.display = 'none');
+    }, 3000); // 5 segundos
+</script>
+</body>
+</html>
+

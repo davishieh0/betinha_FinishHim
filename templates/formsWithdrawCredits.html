@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="../static/css/formsWithdrawCredits.css">
+{% endblock %}
+
+
+{% block content %}
+<div class="div_withdraw">
+  <br action="{{ url_for('withdrawCredits') }}" method="POST">
+    <h2>Informar Conta Bancária</h2>
+    <br>
+    <label for="banco">Banco:</label>
+    <input class="input_saque" type="text" id="banco" name="banco" required placeholder="Nome do Banco">
+    </br>
+
+    <br>
+    <label for="agencia">Agência / Número da Conta:</label>
+    <input class="input_saque" type="text" id="agencia" name="agencia" placeholder="Agência - Conta" required>
+    </br>
+
+    <br>
+    <label for="valor_a_retirar">Digite o valor do saque:</label>
+    <input class="input_saque" type="number" id="valor_a_retirar" name="valor_a_retirar" placeholder="Valor de saque" required>
+    </br>
+
+    <br>
+    <label for="tipoConta">Tipo de Conta:</label>
+    <select class="select_saque" id="tipoConta" name="tipoConta" required>
+        <option value="">Selecione</option>
+        <option value="corrente">Conta Corrente</option>
+        <option value="pix">Chave PIX</option>
+    </select>
+    </br>
+
+    <br>
+    <label class="label_pix" for="chavePix" id="chavePixLabel" style="display:none;">Chave PIX:</label>
+    <input class="input_pix" type="text" id="chavePix" name="chavePix" style="display:none;" placeholder="Informe a chave PIX">
+    </br>
+
+    <button class="btn-enviar" type="submit">Enviar</button>
+  </form>
+</div>
+
+<script>
+  const tipoConta = document.getElementById('tipoConta');
+  const chavePix = document.getElementById('chavePix');
+  const chavePixLabel = document.getElementById('chavePixLabel');
+
+  tipoConta.addEventListener('change', function () {
+    if (this.value === 'pix') {
+      chavePix.style.display = 'block';
+      chavePixLabel.style.display = 'block';
+      chavePix.required = true;
+    } else {
+      chavePix.style.display = 'none';
+      chavePixLabel.style.display = 'none';
+      chavePix.required = false;
+    }
+  });
+</script>
+{% endblock %}

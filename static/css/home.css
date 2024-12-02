@@ -1,0 +1,216 @@
+:root{
+  --bg:#1b1d2b;
+  --branco: #E2E2E2;
+  --cinza: #C7C7C7;
+}
+input, textarea, select, button {
+  margin: 0;          /* Remove margens */
+  padding: 0;         /* Remove espaçamento interno */
+  border: none;       /* Remove bordas padrão */
+  outline: none;      /* Remove o contorno ao focar */
+  font: inherit;      /* Herda a fonte do elemento pai */
+  background: none;   /* Remove fundo padrão */
+  box-sizing: border-box; /* Inclui bordas no cálculo de tamanho */
+}
+
+/* Reset para checkbox e radio para evitar herança não intencional */
+input[type="checkbox"], input[type="radio"] {
+  all: unset; /* Reseta todas as propriedades */
+  display: inline-block; /* Mantém comportamento inline */
+}
+.div-botao{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.botao{
+  padding: 10px 20px;
+  background-color: #ff0000;
+  border-radius: 4px;
+}
+/* Reset para botões para evitar herança */
+button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer; /* Adiciona cursor de ponteiro */
+}
+main{
+  position: relative;
+  margin: 0 auto;
+  padding: 0 1rem 0 1rem;
+  background-size: cover; /* Faz a imagem cobrir toda a área */
+  background-position: center; /* Centraliza a imagem */
+}
+img.banner{
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 60px; /* Opcional: bordas arredondadas */
+  padding: 30px;
+}
+html{
+  color: aliceblue;
+}
+.div-search-button{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+.searchbar{
+  display: flex;
+  justify-content: center;
+  padding: 0px 0px 0px 20px;
+}
+.searchbar::placeholder{
+  margin-left: 20px;
+  color: #d3d3d3;
+}
+.search-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: #FFF;
+  background-color: #641e1e;
+  border-radius: 20px;
+}
+.div-botao a{
+  background-color: #ff0000; /* Cor de fundo inicial: vermelho */
+  color: white; /* Cor do texto */
+  border: none; /* Remove borda padrão */
+  padding: 8px 20px; /* Espaçamento interno adequado */
+  font-size: 16px; /* Tamanho da fonte */
+  border-radius: 8px; /* Bordas mais arredondadas para uma aparência mais suave */
+  cursor: pointer; /* Cursor em formato de mão ao passar o mouse */
+  transition: background-color 0.3s ease, transform 0.2s ease, filter 0.3s ease; /* Transições suaves apenas para as propriedades mais importantes */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+}
+.div-botao a:hover{
+  background-color: #cc0000; /* Cor de fundo ao passar o mouse: vermelho mais escuro */
+  filter: brightness(1.1); /* Aumento de brilho para foco visual */
+  transform: scale(1.05);
+}
+.hightlights{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.hightlights h1, h2{
+  margin-bottom: 10px;
+}
+.div-all-eventos{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 2rem;
+}
+.div-all-eventos h1{
+  font-size: 2.5rem;
+}
+.div-all-eventos h2{
+  font-size: 1.8rem;
+}
+.all-eventos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 2rem;
+}
+.all-eventos h1{
+  font-size: 2.5rem;
+}
+.container-eventos{
+  position: relative;
+  width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 2rem;
+  text-align: center;
+  gap: 5px;
+
+
+  border-radius: 2.625rem;
+border: 1px solid #FF1E1E;
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), rgba(217, 217, 217, 0.10);
+backdrop-filter: blur(17.5px);
+
+}
+.container-eventos h2{
+  color: #FFF;
+  font-family: "SF Pro Display";
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.container-eventos a{
+  
+  
+  background-color: #ff0000; /* Cor de fundo inicial: vermelho */
+  color: white; /* Cor do texto */
+  border: none; /* Remove borda padrão */
+  padding: 8px 20px; /* Espaçamento interno adequado */
+  font-size: 16px; /* Tamanho da fonte */
+  border-radius: 8px; /* Bordas mais arredondadas para uma aparência mais suave */
+  cursor: pointer; /* Cursor em formato de mão ao passar o mouse */
+  transition: background-color 0.3s ease, transform 0.2s ease, filter 0.3s ease; /* Transições suaves apenas para as propriedades mais importantes */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+}
+.container-eventos a:hover{
+  background-color: #cc0000; /* Cor de fundo ao passar o mouse: vermelho mais escuro */
+  filter: brightness(1.1); /* Aumento de brilho para foco visual */
+  transform: scale(1.05); /* Crescimento sutil do botão para um feedback claro */
+}
+.container-eventos a:focus{
+  outline: none; /* Remove a borda padrão do foco */
+  box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.5); /* Adiciona um contorno de foco mais claro */
+}
+
+.container-eventos a:active{
+  transform: scale(1.02); /* O botão diminui um pouco para um efeito de clique */
+  filter: brightness(0.9); /* Reduz o brilho para simular o clique */
+}
+.container-eventos span{
+  padding: 6px 16px;
+  border-radius: 4px;
+  background-color:rgb(217, 0, 4, 0.34);
+}
+
+.container-eventos .datas{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#admin-actions{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+#admin-actions a{
+  background-color: #ff0000; /* Cor de fundo inicial: vermelho */
+  color: white; /* Cor do texto */
+  border: none; /* Remove borda padrão */
+  padding: 8px 20px; /* Espaçamento interno adequado */
+  font-size: 16px; /* Tamanho da fonte */
+  border-radius: 8px; /* Bordas mais arredondadas para uma aparência mais suave */
+  cursor: pointer; /* Cursor em formato de mão ao passar o mouse */
+  transition: background-color 0.3s ease, transform 0.2s ease, filter 0.3s ease; /* Transições suaves apenas para as propriedades mais importantes */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+}
+#admin-actions a:hover{
+  background-color: #cc0000; /* Cor de fundo ao passar o mouse: vermelho mais escuro */
+  filter: brightness(1.1); /* Aumento de brilho para foco visual */
+  transform: scale(1.05); /* Crescimento sutil do botão para um feedback claro */
+}

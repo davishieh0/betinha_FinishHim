@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+
+{%block content%}
+<h2 class="text-sign">Preencha os campos vazios</h2>
+<form class="formulario_registro" action="{{url_for('register')}}" method="post">
+  <label for="name"></label>
+  <input type="text" id="text" name="name" required class="input" placeholder="Nome Completo">
+
+  <label for="email"></label>
+  <input type="text" id="email" name="email" required class="input" placeholder="Email">
+
+  <label for="password"></label>
+  <input type="password" id="password" name="password" required class="input" placeholder="Senha">
+
+  <label for="birth"></label>
+  <input type="date" id="birth" name="birth" required class="input" placeholder="Birth date">
+
+  <button class="btn_enviarlogin" type="submit" class="enviar">Enviar</button>
+</form>
+
+{%endblock%}

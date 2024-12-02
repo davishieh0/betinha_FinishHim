@@ -1,0 +1,181 @@
+/* FRONT "/" */
+/* Resetando margens, paddings, bordas e box-sizing */
+*,
+*::before,
+*::after {
+    font-family: 'Montserrat';font-size: 16px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configurando um tamanho de fonte consistente */
+html {
+    font-size: 100%; /* 1rem = 16px por padrão */
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -moz-tab-size: 4;
+    tab-size: 4;
+}
+
+/* Removendo bordas padrões de elementos clicáveis */
+button,
+input,
+select,
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+/* Garantindo que botões e links sejam estilizados por conta própria */
+button,
+a {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Normalizando estilos de listas */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Garantindo que tabelas tenham estilos básicos */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption {
+    text-align: left;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+/* Removendo estilos padrões de imagens */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+/* Removendo sublinhados de links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Normalizando estilos de campos de formulário */
+textarea {
+    resize: vertical;
+}
+
+button,
+[role="button"] {
+    cursor: pointer;
+}
+
+/* Garantindo que elementos escondidos ainda ocupem espaço */
+[hidden] {
+    display: none !important;
+}
+
+/* Forçando estilos visuais no modo de impressão */
+@media print {
+    * {
+        color: #000 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+}
+body{
+    background:linear-gradient(to right, #090809, #0f0e0f)
+}
+
+div.perguntacarteira{
+    border-radius: 20px;
+    border: solid #fff;
+    color:#fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+div.perguntacarteira{
+    align-items: center;
+    font-weight:400;
+    width:fit-content;
+    text-align: center;
+    display:block;
+    align-items: center;
+    justify-content: center;
+    line-height: 24px;
+    padding: 15px 30px;
+    margin: 20px auto;
+    background-color: #181818;
+    border: 1px solid #181818;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white
+}
+
+a.a_carteira{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    line-height: 24px;
+    padding: 15px 30px;
+    margin: 20px auto;
+    background-color: #101010;
+    border: 2px solid #f40000;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    transition: all .7s;
+}
+
+a.a_carteira:hover{
+    background: #f40000;
+    transform: scale(1.08);
+    color: white;
+    
+}
+
+input.input_homecarteira{
+    padding: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: #fff;
+    color:black
+}
+
+button.btn-enviar{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    line-height: 24px;
+    padding: 15px 30px;
+    margin: 20px auto;
+    background-color: #101010;
+    border: 2px solid #f40000;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    transition: all .7s;
+}
+
+button.btn-enviar:hover{
+    background: #f40000;
+    transform: scale(1.08);
+    color: white;
+    
+}

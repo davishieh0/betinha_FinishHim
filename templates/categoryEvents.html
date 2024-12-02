@@ -1,0 +1,70 @@
+{%extends "base.html"%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="../static/css/categoryEvents.css">
+{% endblock %}
+
+{%block content%}
+<div class="div_categoria">
+  <form id="opcoesForm" action=" {{url_for('categoryEvents')}}" method="post">
+    <label for="opcoes">Selecione uma opção:</label>
+        <select class="select_categoria" name="opcoes" id="opcoes" onchange="document.getElementById('opcoesForm').submit();">
+            <option value="" disabled selected>Nenhum</option>
+            <option value="esportes">Esportes</option>
+            <option value="animais">Animais</option>
+            <option value="eleicoes">Eleições</option>
+            <option value="bolsa">Bolsa de valores</option>
+            <option value="futebol">Futebol</option>
+        </select>
+  </form>
+  <br>
+
+    <form id="filtroForm" action="{{ url_for('categoryEvents') }}" method="post">
+      <input type="hidden" name="opcoes" value="{{ opcoes }}">
+      <label for="filtro">Ordenar por:</label>
+      <select class="select_categoria" name="sort_by" id="filtro" onchange="document.getElementById('filtroForm').submit();">
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="titulo_asc">Título (Alfabética)</option>
+          <option value="titulo_desc">Título (Reversa)</option>
+          <option value="valor_minimo_asc">Valor Mínimo (Crescente)</option>
+          <option value="valor_minimo_desc">Valor Mínimo (Decrescente)</option>
+      </select>
+  </form>
+    <br>
+</div>
+<div class="textos">
+  <h1>Resultados:</h1>
+  <h2>Categoria: {{ opcoes }}</h2>
+</div>
+    <div class="events-container">
+      <br>
+            {%if result%}
+            {%for rows in range(0,total)%}
+              {%with event = result%}
+              <div class="container-eventos">
+                <h2>{{event[rows][2] }}</h2>
+                <p>Prazo de inscrição:</p>
+                <div class="datas">
+                  <span>
+                    <p>{{ event[rows][7].strftime('%d/%m') }}</p>
+                  </span>
+                  <img src="../static/assets/Arrow 1.png" alt="">
+                  <span>
+                    <p>{{ event[rows][9].strftime('%d/%m') }}</p>
+                  </span>
+                </div>
+                <p>Aposta mínima:</p>
+                <p>{{ event[rows][5] }}</p>
+                <a href="/apostar-evento/{{event[rows][0]}}">Apostar</a>
+              </div>
+              {%endwith%}
+            {%endfor%}
+        {%else%}
+        <h1>Nenhum evento encontrado</h1>
+              
+        {%endif%}
+      </div>
+
+
+
+{%endblock%}

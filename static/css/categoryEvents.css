@@ -1,0 +1,141 @@
+div.div_categoria{
+    border-radius: 20px;
+    border: solid #fff;
+    color:#000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+div.div_categoria{
+    font-weight:400;
+    width:fit-content;
+    text-align: center;
+    display:block;
+    align-items: center;
+    justify-content: center;
+    line-height: 24px;
+    padding: 15px 30px;
+    margin: 20px auto;
+    background-color: #181818;
+    border: 1px solid #181818;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white
+}
+
+select.select_categoria{
+    padding: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: #fff;
+    color:black
+}
+body h1,p,h2{
+  color: #fff;
+}
+.div-all-eventos h1{
+    font-size: 2.5rem;
+  }
+  .div-all-eventos h2{
+    font-size: 1.8rem;
+  }
+  .all-eventos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 2rem;
+  }
+  .all-eventos h1{
+    font-size: 2.5rem;
+  }
+  .events-container{
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 1.5rem;
+    
+  }
+  .container-eventos{
+    width: 280px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 2rem;
+    text-align: center;
+    gap: 5px;
+    
+  
+    border-radius: 2.625rem;
+  border: 1px solid #FF1E1E;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), rgba(217, 217, 217, 0.10);
+  backdrop-filter: blur(17.5px);
+  
+  }
+  .container-eventos h2{
+    color: #FFF;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  .textos{
+    text-align: center;
+
+  }
+  .textos h1{
+    font-size: 2.5rem;
+  }
+  .textos h2{
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+  }
+  .container-eventos a{
+    
+    
+    background-color: #ff0000; /* Cor de fundo inicial: vermelho */
+    color: white; /* Cor do texto */
+    border: none; /* Remove borda padrão */
+    padding: 8px 20px; /* Espaçamento interno adequado */
+    font-size: 16px; /* Tamanho da fonte */
+    border-radius: 8px; /* Bordas mais arredondadas para uma aparência mais suave */
+    cursor: pointer; /* Cursor em formato de mão ao passar o mouse */
+    transition: background-color 0.3s ease, transform 0.2s ease, filter 0.3s ease; /* Transições suaves apenas para as propriedades mais importantes */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+  }
+  .container-eventos a:hover{
+    background-color: #cc0000; /* Cor de fundo ao passar o mouse: vermelho mais escuro */
+    filter: brightness(1.1); /* Aumento de brilho para foco visual */
+    transform: scale(1.05); /* Crescimento sutil do botão para um feedback claro */
+  }
+  .container-eventos a:focus{
+    outline: none; /* Remove a borda padrão do foco */
+    box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.5); /* Adiciona um contorno de foco mais claro */
+  }
+  
+  .container-eventos a:active{
+    transform: scale(1.02); /* O botão diminui um pouco para um efeito de clique */
+    filter: brightness(0.9); /* Reduz o brilho para simular o clique */
+  }
+  .container-eventos span{
+    padding: 6px 16px;
+    border-radius: 4px;
+    background-color:rgb(217, 0, 4, 0.34);
+  }
+  
+  .container-eventos .datas{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+ .container-eventos p{
+    color: #fff;
+ }

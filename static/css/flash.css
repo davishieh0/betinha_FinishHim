@@ -1,0 +1,53 @@
+/* Estilos Básicos */
+.flash-div{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+
+.messages {
+  position: fixed;
+  top: 80px;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  opacity: 0;
+
+  transform: translateY(-20px);
+  animation: slide-in 0.5s ease forwards, fade-out 0.5s ease 4.5s forwards;
+  z-index: 1000;
+}
+
+/* Tipos de Mensagens */
+.messages.success{
+  background: linear-gradient(45deg, #28a745, #4caf50);
+}
+
+.messages.error {
+  background: linear-gradient(45deg, #dc3545, #ff5733);
+}
+
+/* Animações */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
