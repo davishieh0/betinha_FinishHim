@@ -13,7 +13,7 @@ def get_db():
         conexao = mysql.connector.connect(
             host='127.0.0.1',       # IP do banco de dados.
             user='root',            # Usuário de login do banco.
-            password='Davi1712#',   # Senha do banco de dados.
+            password='otavio2912',   # Senha do banco de dados.
             database='bd_betinha',   # Nome do banco de dados que estamos usando.
         )
         return conexao
@@ -52,7 +52,7 @@ def aplicarTaxaSaque(valor_saque):
     return valor_saque
 
 # Função para movimentar saldo do usuário (saque ou depósito).
-def movimentarSaldo(valor, tipo_saldo, tipo_transacao, titulo_transacao):
+def movimentarSaldo(valor, tipo_saldo, tipo_transacao, id_usuario):
     # tipo_transacao: saque ou deposito
     # tipo_saldo: saldo ou saldo_simulado
     id_user = session.get('userid')
@@ -90,7 +90,7 @@ def movimentarSaldo(valor, tipo_saldo, tipo_transacao, titulo_transacao):
                       
                       cursor.execute(
                       'INSERT INTO historico_saldo (titulo, valor, data_transacao, id_usuarios,qnt_saque) VALUES (%s, -%s, NOW(), %s,%s)',
-                      (titulo_transacao, valor if titulo_transacao == 'saque' else valor, id_user,valor)
+                      (tipo_transacao, valor, id_user,valor)
                       )
                       
                       cursor.execute('UPDATE carteira SET saldo = saldo - %s WHERE id_usuarios = %s',(valor, id_user))
@@ -108,7 +108,7 @@ def movimentarSaldo(valor, tipo_saldo, tipo_transacao, titulo_transacao):
                     
                     cursor.execute(
                     'INSERT INTO historico_saldo (titulo, valor, data_transacao, id_usuarios,qnt_saque) VALUES (%s, -%s, NOW(), %s,%s)',
-                    (titulo_transacao, valor if titulo_transacao == 'saque' else valor, id_user,valor)
+                    (tipo_transacao, valor, id_user,valor)
                     )
                     cursor.execute('UPDATE carteira SET saldo = saldo - %s WHERE id_usuarios = %s',(valor, id_user))
 
@@ -116,13 +116,26 @@ def movimentarSaldo(valor, tipo_saldo, tipo_transacao, titulo_transacao):
                 else:
                     flash('Saldo insuficiente para saque','error')
                     return False
+        elif tipo_transacao == 'aposta':
+              
+                      valor = aplicarTaxaSaque(valor)
+                      
+                      cursor.execute(
+                      'INSERT INTO historico_saldo (titulo, valor, data_transacao, id_usuarios,qnt_saque) VALUES (%s, -%s, NOW(), %s,%s)',
+                      (tipo_transacao, valor, id_user,valor)
+                      )
+                      
+                      cursor.execute('UPDATE carteira SET saldo = saldo - %s WHERE id_usuarios = %s',(valor, id_user))
+
         elif tipo_transacao == 'deposito':
-            cursor.execute('INSERT INTO historico_saldo (titulo, valor, data_transacao, id_usuarios, qnt_saque) VALUES (%s, +%s, NOW(), %s,%s)',(titulo_transacao, valor if tipo_transacao == 'saque' else valor, id_user,0))
+            cursor.execute('INSERT INTO historico_saldo (titulo, valor, data_transacao, id_usuarios, qnt_saque) VALUES (%s, +%s, NOW(), %s,%s)',(tipo_transacao, valor, id_user,0))
           
             cursor.execute(
                 f'UPDATE carteira SET {tipo_saldo} = {saldo} + %s WHERE id_usuarios = %s',(valor, id_user)
             )
             flash('Depósito concluido com sucesso!','success')
+        elif tipo_transacao == 'apostaganhar':
+          cursor.execute('INSERT INTO historico_saldo (titulo, valor, data_transacao, id_usuarios, qnt_saque) VALUES (%s, +%s, NOW(), %s,%s)',(tipo_transacao, valor, id_usuario,0))
             
         connection.commit()
         cursor.close()
@@ -159,7 +172,12 @@ def register():
         cursor.execute('SELECT * FROM usuarios WHERE email = %s', (email,))
         account = cursor.fetchone()
 
-        if account:  # Se já existe, informa o usuário.
+        if email.find('@') == -1:
+          cursor.close()
+          connection.close()
+          flash('Email inválido', 'error')
+          return redirect(url_for('register'))
+        elif account:  # Se já existe, informa o usuário.
             cursor.close()
             connection.close()
             flash('Conta já existe!', 'error')
@@ -335,10 +353,7 @@ def apostar(evento_id):
             return redirect(url_for('home'))
         else:
             # Atualiza o saldo do usuário na tabela de carteira
-            cursor.execute(
-                'UPDATE carteira SET saldo = saldo - %s WHERE id_usuarios = %s',
-                (valor_aposta, user_id)
-            )
+            movimentarSaldo(valor_aposta,'saldo','aposta','aposta')
             
             # Incrementa o número de apostas no evento
             cursor.execute(
@@ -430,9 +445,7 @@ def finalizar(evento_id):
       #Passar por todas as apostas do evento
       for eventos in (aposta_eventos):
         
-        #Utiliza randrange para pegar um numero aleatório entre 0 e 10
         
-        #Se o numero aleatório for maior que 7, adiciona aos ganhadores(id_usuario, dinheiro_apostado), senão, adiciona aos perdedores(dinheiro_apostado)
         if eventos[4] == padrao:
           ganhadores.append([eventos[1], eventos[3]])
         else:
@@ -472,8 +485,14 @@ def finalizar(evento_id):
         #calculo da porcentagem de acordo com a aposta do usuario
         retorno = divisao * i[1]
         print(retorno)
+        
         #Atualiza a carteira do usuario, somando a aposta inicial com o retorno
         cursor.execute('UPDATE carteira SET saldo = saldo + %s + %s WHERE id_usuarios = %s',(retorno, i[1], i[0],))
+        
+        
+        valor_aposta = retorno + i[1]
+        valor_aposta = int(valor_aposta)
+        movimentarSaldo(valor_aposta,'saldo','apostaganhar',i[0])
         
       #Ao passar por todos os ganhadores, remove o evento ao coloca-lo como reprovado
       cursor.execute('UPDATE eventos SET is_aprovado = "N" WHERE id_eventos = %s', (evento_id,))

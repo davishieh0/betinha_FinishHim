@@ -28,8 +28,7 @@
       <div id="event{{event[rows][0]}}">
         <div class="form-select">
       <a href="/aprovar-evento/{{event[rows][0]}}">Approve</a>
-        <form action="|">
-          <form id="opcoesForm" action=" {{url_for('desaprovar_evento', evento_id=event[rows][0])}}" method="post">
+          <form id="opcoesForm" action="{{url_for('desaprovar_evento', evento_id=event[rows][0])}}" method="post">
                 <select name="opcoes" id="opcoes" onchange="document.getElementById('opcoesForm').submit();">
                     <option value="" disabled selected>Rejeitar</option>
                     <option value="confuso">Texto Confuso</option>
@@ -37,7 +36,6 @@
                     <option value="politicas">Não Respeita as políticas ou termos da plataforma</option>
                 </select>
           </form>
-        </form>
       </div>
       </div>
       </td>
